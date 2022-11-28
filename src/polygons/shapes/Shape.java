@@ -1,4 +1,4 @@
-package shapes;
+package polygons.shapes;
 
 import javax.swing.*;
 import java.awt.*;

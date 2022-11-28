@@ -1,46 +1,42 @@
-package shapes;
+package polygons.shapes;
 
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.*;
 
 /**
  * Created by Niklas on 2016-02-14.
  */
-public class Rectangle extends Shape {
-
-    public Rectangle(int x, int y, int sizeX, int sizeY, double rotation){
+public class Triangle extends Shape {
+    public Triangle(int x, int y, int sizeX, int sizeY, double rotation){
         super(x,y);
         this.scale(sizeX,sizeY);
         this.rotate(rotation);
     }
-
-    public Rectangle(int x, int y, int sizeX, int sizeY){
+    public Triangle(int x, int y, int sizeX, int sizeY){
         super(x,y);
         this.scale(sizeX,sizeY);
     }
-
-    public Rectangle(int x, int y, double rotation){
-        this(x,y,1,1,rotation);
+    public Triangle(int x, int y, double rotation){
+        super(x,y);
+        this.rotate(rotation);
     }
-
-    public Rectangle(int x, int y){
-        this(x,y,1,1);
+    public Triangle(int x, int y){
+        super(x,y);
     }
 
     private List<Point> getCorners(){
-        // DIT952.polygons.Rectangle has four corners
-        List<Point> corners = new ArrayList<>(4);
+        // DIT952.polygons.Triangle has three corners
+        java.util.List<Point> corners = new ArrayList<>(3);
 
         Point center = getCenterPoint();
         int[][] offsets = {
-                {-getScaleX()/2, -getScaleY()/2},
-                { getScaleX()/2, -getScaleY()/2},
-                { getScaleX()/2,  getScaleY()/2},
-                {-getScaleX()/2,  getScaleY()/2}
+                { 0,             -getScaleY()*58/100},
+                {-getScaleX()/2,  getScaleY()*29/100},
+                { getScaleX()/2,  getScaleY()*29/100}
         };
 
-        for (int i = 0; i < 4; i++){
+        for (int i = 0; i < 3; i++){
             // start from center, find corner
             Point newCorner = new Point(center.x+offsets[i][0], center.y+offsets[i][1]);
 
@@ -57,7 +53,7 @@ public class Rectangle extends Shape {
     }
 
     public void paint(Graphics g){
-        List<Point> corners = getCorners();
+        java.util.List<Point> corners = getCorners();
         // first and last point should be the same
         corners.add(corners.get(0));
         Point from = null;
@@ -70,3 +66,4 @@ public class Rectangle extends Shape {
 
     }
 }
+
